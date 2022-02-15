@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useSession, signIn } from "next-auth/react";
-import { PageContent } from "../components/PageContent";
-import { H3, Paragraph } from "../components/Typography";
-import { MaxWidthWrapper } from "../components/MaxWidthWrapper";
-import { Button } from "../components/Button";
-import { Header } from "../components/Header";
+import { Button } from "@cozy/components/Button";
+import { Header } from "@cozy/components/Header";
+import { MaxWidthWrapper } from "@cozy/components/MaxWidthWrapper";
+import { PageContent } from "@cozy/components/PageContent";
+import { H3, Paragraph } from "@cozy/components/Typography";
+import { connectOptions } from "@cozy/utils/connectOptions";
 import { useWallet } from "@gimmixorg/use-wallet";
-import { connectOptions } from "../utils/connectOptions";
+import { signIn, useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
 import { LoadingText } from "src/components/LoadingText";
 import styled from "styled-components";
 

@@ -1,8 +1,8 @@
+import { contractAbi, contractAddress } from "@cozy/utils/deployedContracts";
+import { Contract, providers, utils } from "ethers";
+import fetch from "isomorphic-fetch";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-import fetch from "isomorphic-fetch";
-import { Contract, providers, utils } from "ethers";
-import { contractAbi, contractAddress } from "../../utils/deployedContracts";
 
 const guildId = "897406825618604033";
 

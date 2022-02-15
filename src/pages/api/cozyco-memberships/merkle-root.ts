@@ -1,8 +1,8 @@
+import { memberships } from "@cozy/tokens/cozyco-memberships";
 import { NextApiRequest, NextApiResponse } from "next";
-import { merkleTree } from "../../../../tokens/cozyco-memberships";
 
 const handler = async (_: NextApiRequest, res: NextApiResponse) => {
-  res.json({ root: merkleTree.getHexRoot() });
+  res.json({ root: memberships.friendsOf.merkleTree.getHexRoot() });
 };
 
 export default handler;

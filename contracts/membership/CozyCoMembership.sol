@@ -30,30 +30,16 @@ contract CozyCoMembership is Ownable, ERC1155Burnable {
     mapping(uint256 => bytes32) private _merkleRoots;
     mapping(uint256 => mapping(address => bool)) private _claimedMemberships;
 
-    function uri(uint256 id)
-        public
-        view
-        virtual
-        override
-        returns (string memory)
-    {
+    function uri(uint256 id) public view virtual override returns (string memory) {
         require(_membershipMetadata[id] != address(0), "no metadata");
         return IMembershipMetadata(_membershipMetadata[id]).getURI(id);
     }
 
-    function issueMembership(address to, uint256 membershipId)
-        public
-        virtual
-        onlyOwner
-    {
+    function issueMembership(address to, uint256 membershipId) public virtual onlyOwner {
         _mintMembership(to, membershipId);
     }
 
-    function issueMemberships(address[] memory _members, uint256 token)
-        public
-        virtual
-        onlyOwner
-    {
+    function issueMemberships(address[] memory _members, uint256 token) public virtual onlyOwner {
         for (uint256 i = 0; i < _members.length; i++) {
             issueMembership(_members[i], token);
         }
@@ -64,10 +50,7 @@ contract CozyCoMembership is Ownable, ERC1155Burnable {
         uint256 membershipId,
         address metadata
     ) public virtual onlyOwner {
-        require(
-            _membershipMetadata[membershipId] == address(0),
-            "membershipId in use"
-        );
+        require(_membershipMetadata[membershipId] == address(0), "membershipId in use");
         _membershipMetadata[membershipId] = metadata;
         _mintMembership(to, membershipId);
     }
@@ -78,10 +61,7 @@ contract CozyCoMembership is Ownable, ERC1155Burnable {
         // is on said list. If not, then we allow them to claim one token.
         if (_merkleRoots[membershipId] != 0) {
             require(
-                proof.verify(
-                    _merkleRoots[membershipId],
-                    keccak256(abi.encodePacked(_msgSender()))
-                ),
+                proof.verify(_merkleRoots[membershipId], keccak256(abi.encodePacked(_msgSender()))),
                 "not claimable for address"
             );
         }
@@ -91,10 +71,7 @@ contract CozyCoMembership is Ownable, ERC1155Burnable {
     function _mintMembership(address to, uint256 membershipId) private {
         require(_membershipMetadata[membershipId] != address(0), "no metadata");
         require(balanceOf(to, membershipId) == 0, "already member");
-        require(
-            _claimedMemberships[membershipId][to] == false,
-            "already claimed"
-        );
+        require(_claimedMemberships[membershipId][to] == false, "already claimed");
         _mint(to, membershipId, 1, "");
         _claimedMemberships[membershipId][to] = true;
     }
@@ -115,53 +92,32 @@ contract CozyCoMembership is Ownable, ERC1155Burnable {
         }
     }
 
-    function addMembershipMetadataAddress(
-        uint256 membershipId,
-        address _address
-    ) public onlyOwner {
-        require(
-            _membershipMetadata[membershipId] == address(0),
-            "membershipId in use"
-        );
+    function addMembershipMetadataAddress(uint256 membershipId, address _address) public onlyOwner {
+        require(_membershipMetadata[membershipId] == address(0), "membershipId in use");
         _membershipMetadata[membershipId] = _address;
         _membershipTypes.push(membershipId);
     }
 
-    function dangerouslySetMembershipMetadataAddress(
-        uint256 membershipId,
-        address _address
-    ) public onlyOwner {
-        _membershipMetadata[membershipId] = _address;
-    }
-
-    function getMembershipTypes()
-        public
-        view
-        returns (uint256[] memory membershipTypes)
-    {
-        return _membershipTypes;
-    }
-
-    function getMembershipMetadataAddress(uint256 membershipId)
-        public
-        view
-        returns (address)
-    {
-        return _membershipMetadata[membershipId];
-    }
-
-    function setMembershipMerkleRoot(bytes32 root, uint256 membershipId)
+    function dangerouslySetMembershipMetadataAddress(uint256 membershipId, address _address)
         public
         onlyOwner
     {
+        _membershipMetadata[membershipId] = _address;
+    }
+
+    function getMembershipTypes() public view returns (uint256[] memory membershipTypes) {
+        return _membershipTypes;
+    }
+
+    function getMembershipMetadataAddress(uint256 membershipId) public view returns (address) {
+        return _membershipMetadata[membershipId];
+    }
+
+    function setMembershipMerkleRoot(bytes32 root, uint256 membershipId) public onlyOwner {
         _merkleRoots[membershipId] = root;
     }
 
-    function getMembershipMerkleRoot(uint256 membershipId)
-        public
-        view
-        returns (bytes32)
-    {
+    function getMembershipMerkleRoot(uint256 membershipId) public view returns (bytes32) {
         return _merkleRoots[membershipId];
     }
 

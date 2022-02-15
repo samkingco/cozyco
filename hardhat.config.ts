@@ -1,12 +1,12 @@
-import * as dotenv from "dotenv";
-import { HardhatUserConfig } from "hardhat/config";
 import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
-import "@typechain/hardhat";
-import "hardhat-gas-reporter";
-import "hardhat-contract-sizer";
-import "solidity-coverage";
 import "@symblox/hardhat-abi-gen";
+import "@typechain/hardhat";
+import * as dotenv from "dotenv";
+import "hardhat-contract-sizer";
+import "hardhat-gas-reporter";
+import { HardhatUserConfig } from "hardhat/config";
+import "solidity-coverage";
 
 dotenv.config();
 

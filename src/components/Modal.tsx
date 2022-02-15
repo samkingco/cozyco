@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
 import {
-  DialogOverlay as ReachDialogOverlay,
   DialogContent as ReachDialogContent,
+  DialogOverlay as ReachDialogOverlay,
 } from "@reach/dialog";
 import "@reach/dialog/styles.css";
+import React from "react";
+import styled from "styled-components";
 
 const DialogOverlay = styled(ReachDialogOverlay)`
   &[data-reach-dialog-overlay] {

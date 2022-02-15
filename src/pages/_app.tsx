@@ -1,11 +1,11 @@
-import React from "react";
-import Head from "next/head";
-import type { AppProps } from "next/app";
+import { Footer } from "@cozy/components/Footer";
+import { GlobalStyles } from "@cozy/components/GlobalStyles";
+import { theme } from "@cozy/components/theme";
 import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import React from "react";
 import { ThemeProvider } from "styled-components";
-import { theme } from "../components/theme";
-import { GlobalStyles } from "../components/GlobalStyles";
-import { Footer } from "../components/Footer";
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const metaTitle = "cozy co.";

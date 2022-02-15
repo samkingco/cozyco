@@ -1,23 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
-import Head from "next/head";
-import useSWR from "swr";
-import { ethers, BigNumber, Contract } from "ethers";
-import { useWallet } from "@gimmixorg/use-wallet";
-import { GetMerkleProofResponse } from "./api/cozyco-memberships/merkle-proof";
-import { MemberListCheckResponse } from "./api/cozyco-memberships/check-list";
-import { fetcher } from "../utils/fetch";
-import { H3, Paragraph } from "../components/Typography";
-import { PageContent } from "../components/PageContent";
-import { MaxWidthWrapper } from "../components/MaxWidthWrapper";
-import { Header } from "../components/Header";
-import { Button } from "../components/Button";
-import { LoadingText } from "../components/LoadingText";
-import { connectOptions } from "../utils/connectOptions";
+import { Button } from "@cozy/components/Button";
+import { Header } from "@cozy/components/Header";
+import { LoadingText } from "@cozy/components/LoadingText";
+import { MaxWidthWrapper } from "@cozy/components/MaxWidthWrapper";
+import { PageContent } from "@cozy/components/PageContent";
+import { H3, Paragraph } from "@cozy/components/Typography";
+import { connectOptions } from "@cozy/utils/connectOptions";
 import {
   contractAbi,
   contractAddress,
   isChainSupportedForContract,
-} from "../utils/deployedContracts";
+} from "@cozy/utils/deployedContracts";
+import { fetcher } from "@cozy/utils/fetch";
+import { useWallet } from "@gimmixorg/use-wallet";
+import { BigNumber, Contract, ethers } from "ethers";
+import Head from "next/head";
+import React, { useCallback, useEffect, useState } from "react";
+import useSWR from "swr";
+import { MemberListCheckResponse } from "./api/cozyco-memberships/check-list";
+import { GetMerkleProofResponse } from "./api/cozyco-memberships/merkle-proof";
 
 enum MintingState {
   NOT_READY = "NOT_READY",

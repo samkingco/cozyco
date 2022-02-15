@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { memberships } from "@cozy/tokens/cozyco-memberships";
 import keccak256 from "keccak256";
-import { merkleTree } from "../../../../tokens/cozyco-memberships";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetMerkleProofResponse {
   proof: string[];
@@ -12,8 +12,10 @@ const handler = async (
   res: NextApiResponse<GetMerkleProofResponse>
 ) => {
   const address = req.query.address as string;
-  const proof = merkleTree.getHexProof(keccak256(address));
-  res.json({ proof, root: merkleTree.getHexRoot() });
+  const proof = memberships.friendsOf.merkleTree.getHexProof(
+    keccak256(address)
+  );
+  res.json({ proof, root: memberships.friendsOf.merkleTree.getHexRoot() });
 };
 
 export default handler;

@@ -1,8 +1,8 @@
-import React from "react";
+import { PageContent } from "@cozy/components/PageContent";
+import { Paragraph } from "@cozy/components/Typography";
 import Head from "next/head";
 import Link from "next/link";
-import { PageContent } from "../components/PageContent";
-import { H2, Paragraph } from "../components/Typography";
+import React from "react";
 
 function Error404() {
   return (

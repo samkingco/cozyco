@@ -1,10 +1,10 @@
+import quiltTokens from "@cozy/tokens/quilts/tokens.json";
+import { contractAddress } from "@cozy/utils/deployedContracts";
 import {
   APIEmbed,
   APIEmbedField,
   APIInteractionResponseCallbackData,
 } from "discord-api-types/v8";
-import quiltTokens from "../../../tokens/quilts/tokens.json";
-import { contractAddress } from "../deployedContracts";
 
 const finestQuiltsChannelId = "897418619582029845";
 

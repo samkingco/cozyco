@@ -18,12 +18,12 @@ import {
   deployQuiltMakerRenderer,
 } from "./helpers/deployments";
 import {
-  blankPatchItems as patchItems,
   blankPatchBundles as patchBundles,
-  makeArgsStockInSupplies,
-  makeSKU,
-  makeArgsStockInSuppliesBundle,
+  blankPatchItems as patchItems,
   getItemsTotalPrice,
+  makeArgsStockInSupplies,
+  makeArgsStockInSuppliesBundle,
+  makeSKU,
 } from "./helpers/mock-data";
 
 describe("Custom quilts", () => {

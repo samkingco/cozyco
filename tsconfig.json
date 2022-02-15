@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2018",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,18 +15,16 @@
     "jsx": "preserve",
     "outDir": "dist",
     "baseUrl": "./",
+    "paths": {
+      "@cozy/abis/*": ["src/abis/*"],
+      "@cozy/components/*": ["src/components/*"],
+      "@cozy/hooks/*": ["src/hooks/*"],
+      "@cozy/utils/*": ["src/utils/*"],
+      "@cozy/tokens/*": ["src/tokens/*"]
+    },
     "incremental": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "./typechain-types",
-    "./test"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
-  "files": [
-    "./hardhat.config.ts"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "./typechain-types", "./test"],
+  "exclude": ["node_modules"],
+  "files": ["./hardhat.config.ts"]
 }

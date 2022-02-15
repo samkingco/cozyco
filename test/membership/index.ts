@@ -2,9 +2,9 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { expect } from "chai";
 import { Contract } from "ethers";
 import { ethers } from "hardhat";
-import { MerkleTree } from "merkletreejs";
 import keccak256 from "keccak256";
-import { memberships } from "../../tokens/cozyco-memberships";
+import { MerkleTree } from "merkletreejs";
+import { memberships } from "../../src/tokens/cozyco-memberships";
 
 describe("CCMFriendsOfMetadata contract", () => {
   let ccmFriendsOfMetadata: Contract;

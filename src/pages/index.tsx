@@ -1,10 +1,10 @@
-import React from "react";
+import { LinkButton } from "@cozy/components/Button";
+import { Header } from "@cozy/components/Header";
+import { MaxWidthWrapper } from "@cozy/components/MaxWidthWrapper";
+import { PageContent } from "@cozy/components/PageContent";
+import { Paragraph } from "@cozy/components/Typography";
 import Link from "next/link";
-import { PageContent } from "../components/PageContent";
-import { Paragraph } from "../components/Typography";
-import { MaxWidthWrapper } from "../components/MaxWidthWrapper";
-import { LinkButton } from "../components/Button";
-import { Header } from "../components/Header";
+import React from "react";
 
 function Index() {
   return (

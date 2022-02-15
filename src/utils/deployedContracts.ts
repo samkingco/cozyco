@@ -1,5 +1,5 @@
-import QuiltsABI from "../abis/Quilts.json";
-import CozyCoMembershipABI from "../abis/CozyCoMembership.json";
+import CozyCoMembershipABI from "@cozy/abis/CozyCoMembership.json";
+import QuiltsABI from "@cozy/abis/Quilts.json";
 
 export const deployedContracts = {
   quilts: {

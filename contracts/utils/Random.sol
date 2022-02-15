@@ -6,11 +6,7 @@ library Random {
         return uint256(keccak256(abi.encodePacked(seed)));
     }
 
-    function keyPrefix(string memory key, string memory seed)
-        internal
-        pure
-        returns (uint256)
-    {
+    function keyPrefix(string memory key, string memory seed) internal pure returns (uint256) {
         return seeded(string(abi.encodePacked(key, seed)));
     }
 
@@ -19,16 +15,6 @@ library Random {
         string memory seed,
         address sender
     ) internal view returns (uint256) {
-        return
-            seeded(
-                string(
-                    abi.encodePacked(
-                        key,
-                        seed,
-                        blockhash(block.number - 1),
-                        sender
-                    )
-                )
-            );
+        return seeded(string(abi.encodePacked(key, seed, blockhash(block.number - 1), sender)));
     }
 }

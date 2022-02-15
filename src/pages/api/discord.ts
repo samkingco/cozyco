@@ -1,13 +1,13 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
+import { getCozyQuilt } from "@cozy/utils/discord/cozy";
+import { getQuilt } from "@cozy/utils/discord/quilt";
+import { createVibe, getRandomVibe } from "@cozy/utils/discord/vibe";
 import {
   APIApplicationCommandInteraction,
   APIInteractionResponse,
 } from "discord-api-types/v8";
-import nacl from "tweetnacl";
 import fetch from "isomorphic-fetch";
-import { getQuilt } from "../../utils/discord/quilt";
-import { getCozyQuilt } from "../../utils/discord/cozy";
-import { createVibe, getRandomVibe } from "../../utils/discord/vibe";
+import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
+import nacl from "tweetnacl";
 
 const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;

@@ -65,12 +65,7 @@ contract CCMFriendsOfMetadata is Ownable, IMembershipMetadata {
                         '", "image": "',
                         imageURI,
                         bytes(animationURI).length > 0
-                            ? string(
-                                abi.encodePacked(
-                                    '", "animation_url": "',
-                                    animationURI
-                                )
-                            )
+                            ? string(abi.encodePacked('", "animation_url": "', animationURI))
                             : "",
                         '", "attributes": [{ "trait_type": "Membership", "value": "',
                         name,

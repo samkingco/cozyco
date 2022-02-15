@@ -1,11 +1,11 @@
-import React from "react";
+import { Header } from "@cozy/components/Header";
+import { MaxWidthWrapper } from "@cozy/components/MaxWidthWrapper";
+import { PageContent } from "@cozy/components/PageContent";
+import { H2, H3, H4, Paragraph } from "@cozy/components/Typography";
 import Head from "next/head";
 import Image from "next/image";
+import React from "react";
 import styled from "styled-components";
-import { PageContent } from "../../components/PageContent";
-import { H2, H3, H4, Paragraph } from "../../components/Typography";
-import { MaxWidthWrapper } from "../../components/MaxWidthWrapper";
-import { Header } from "../../components/Header";
 
 const ImageWrapper = styled.div`
   margin: ${(p) => p.theme.spacing.m} 0;

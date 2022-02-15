@@ -1,5 +1,7 @@
-node_modules
+.next
 artifacts
 cache
-coverage*
-gasReporterOutput.json
+node_modules
+src/abis
+typechain-types
+*.json
