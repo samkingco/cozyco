@@ -12,6 +12,7 @@
   "dependencies": {
     "@gimmixorg/use-wallet": "^0.0.31",
     "@reach/dialog": "^0.16.2",
+    "@reach/menu-button": "^0.16.2",
     "@walletconnect/web3-provider": "^1.7.1",
     "airtable": "^0.11.1",
     "ethers": "^5.4.7",

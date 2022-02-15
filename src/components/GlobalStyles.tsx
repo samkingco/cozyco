@@ -2,29 +2,13 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {
-    font-family: DomaineDisplayBold;
+    font-family: Arnold;
     font-display: fallback;
-    src: url(/fonts/DomaineDisplay-BoldItalic.woff2) format("woff2");
+    src: url(/fonts/Arnold-Italic.woff2) format("woff2");
     font-style: italic;
-    font-weight: bold;
-  }
-
-  @font-face {
-    font-family: Mono;
-    font-display: fallback;
-    src: url(/fonts/VCTR-Mono-Regular.woff2) format("woff2");
-    font-style: normal;
     font-weight: normal;
   }
-
-  @font-face {
-    font-family: Mono;
-    font-display: fallback;
-    src: url(/fonts/VCTR-Mono-Bold.woff2) format("woff2");
-    font-style: normal;
-    font-weight: bold;
-  }
-
+  
   * {
     padding: 0;
     margin: 0;
@@ -41,14 +25,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    background: ${(p) => p.theme.colors.bg};
+    background: ${(p) => p.theme.colors.bgStrong};
   }
   
   body {
     font-family: ${(p) => p.theme.fonts.body};
-    font-size: 16px;
-    line-height: 1.5;
-    color: ${(p) => p.theme.colors.fg};
+    font-size: 20px;
+    line-height: 1.6;
+    color: ${(p) => p.theme.colors.fgBase};
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -69,12 +53,26 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
     outline: inherit;
   }
-
+  
   a {
     color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+    
+    &:hover {
+      color: ${(p) => p.theme.colors.fgStrong};
+    }
   }
 
   ul {
     margin-left: 1.5rem;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  .web3modal-modal-lightbox {
+    z-index: 100 !important;
   }
 `;

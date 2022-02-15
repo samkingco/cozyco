@@ -1,15 +1,8 @@
 import { css } from "styled-components";
-import { theme } from "./theme";
 
 export interface WithMarginProp {
   margin?: string;
 }
-
-interface SizeMap {
-  [K: string]: string;
-}
-
-const sizes: SizeMap = theme.spacing;
 
 export default function withMargin({ margin = "" }: WithMarginProp) {
   const trimmedMargin = margin.trim();
@@ -32,8 +25,10 @@ export default function withMargin({ margin = "" }: WithMarginProp) {
         size = size.split("-")[1];
       }
 
-      if (Object.keys(sizes).includes(size)) {
-        return isNegative ? `-${sizes[size]}` : sizes[size];
+      const sizes = [2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 72, 80];
+
+      if (sizes.map((i) => i.toString()).includes(size)) {
+        return isNegative ? `-${size}px` : `${size}px`;
       } else if (size === "0") {
         return "0";
       } else if (size === "auto") {

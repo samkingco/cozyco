@@ -1,13 +1,13 @@
 import { Button } from "@cozy/components/Button";
-import { Header } from "@cozy/components/Header";
+import { LoadingIndicator } from "@cozy/components/LoadingIndicator";
 import { MaxWidthWrapper } from "@cozy/components/MaxWidthWrapper";
 import { PageContent } from "@cozy/components/PageContent";
-import { H3, Paragraph } from "@cozy/components/Typography";
+import { PageTitle } from "@cozy/components/PageTitle";
+import { H2, Paragraph } from "@cozy/components/Typography";
 import { connectOptions } from "@cozy/utils/connectOptions";
 import { useWallet } from "@gimmixorg/use-wallet";
 import { signIn, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-import { LoadingText } from "src/components/LoadingText";
 import styled from "styled-components";
 
 enum ClaimRolesState {
@@ -46,26 +46,41 @@ const roleMap: RoleMap = {
   },
 };
 
+const ActionCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: ${(p) => p.theme.colors.bgMuted};
+  border-radius: 8px;
+  margin-top: 24px;
+  text-align: center;
+`;
+
 const Roles = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  justify-content: center;
+  gap: 8px;
 `;
 
 const Role = styled(Paragraph)<{ $roleColor?: string }>`
   display: inline-flex;
   align-items: center;
   background: white;
-  border-radius: 4px;
-  padding: 12px;
+  border-radius: 8px;
+  padding: 6px 12px;
+  border: 2px solid ${(p) => p.theme.colors.bgStrong};
+
   &:before {
     content: "";
     display: block;
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
     margin-right: 8px;
-    background: ${(p) => p.$roleColor || p.theme.colors.accent};
+    background: ${(p) => p.$roleColor || p.theme.colors.fgAccent};
   }
 `;
 
@@ -126,84 +141,87 @@ export default function DiscordRoles() {
 
   return (
     <PageContent>
-      <Header />
       <MaxWidthWrapper as="section">
-        <H3 margin="0 0 xs">claim discord roles</H3>
-        {claimRolesState === ClaimRolesState.NO_DISCORD_AUTH && (
-          <>
-            <Paragraph>
-              log in with discord, connect your wallet, and your cozy co discord
-              roles will be assigned. you'll be given certain roles based on the
-              cozy co NFTs you own like quilts or our membership card.
-            </Paragraph>
+        <PageTitle title="Claim discord roles" quilty="bot" />
+        <Paragraph>
+          Want those cool Discord roles? Log in and connect your wallet. Roles
+          will be added based on the NFTs you own, like quilts, or our
+          membership card.
+        </Paragraph>
+
+        <ActionCard>
+          {claimRolesState === ClaimRolesState.NO_DISCORD_AUTH && (
             <Button margin="m 0 0" onClick={() => signIn("discord")}>
               log in with discord
             </Button>
-          </>
-        )}
+          )}
 
-        {claimRolesState === ClaimRolesState.NOT_CONNECTED && (
-          <>
-            <Paragraph>
-              your discord is connected, now you need to connect your wallet.
-              make sure to connect to the wallet that has your cozy co NFTs in
-              it!
-            </Paragraph>
-            <Button margin="m 0 0" onClick={() => connect(connectOptions)}>
-              connect wallet
-            </Button>
-          </>
-        )}
-
-        {claimRolesState === ClaimRolesState.READY && (
-          <>
-            <Paragraph>
-              now you just need to confirm we can check your wallet balances.
-              this is just like logging in to OpenSea.
-            </Paragraph>
-            <Button margin="m 0 0" onClick={() => claimRoles()}>
-              sign message
-            </Button>
-          </>
-        )}
-
-        {claimRolesState === ClaimRolesState.CLAIMING_ROLES && (
-          <Paragraph>
-            <LoadingText>working on it</LoadingText>
-          </Paragraph>
-        )}
-
-        {claimRolesState === ClaimRolesState.ERROR && (
-          <Paragraph>
-            whoops, something went wrong… reload the page and try again
-          </Paragraph>
-        )}
-
-        {claimRolesState === ClaimRolesState.CLAIMED_ROLES && (
-          <>
-            {roles.length > 0 ? (
-              <>
-                <Paragraph margin="0 0 s">
-                  you now have the following roles in discord! drop by and say
-                  hi to give them a spin
-                </Paragraph>
-                <Roles>
-                  {roles.map((role) => (
-                    <Role $roleColor={roleMap[role].color}>
-                      {roleMap[role].label}
-                    </Role>
-                  ))}
-                </Roles>
-              </>
-            ) : (
-              <Paragraph>
-                it looks like there are no roles for you to claim in Discord
-                right now. this is likely because the wallet you connected with
-                had no cozy co NFTs in it.
+          {claimRolesState === ClaimRolesState.NOT_CONNECTED && (
+            <>
+              <H2 size="m">Connect wallet</H2>
+              <Paragraph size="s" margin="8 0 16">
+                Now connect your wallet. Make sure it’s the wallet with your
+                cozy co NFTs!
               </Paragraph>
-            )}
-          </>
-        )}
+              <Button margin="m 0 0" onClick={() => connect(connectOptions)}>
+                connect wallet
+              </Button>
+            </>
+          )}
+
+          {claimRolesState === ClaimRolesState.READY && (
+            <>
+              <H2 size="m">Claim roles</H2>
+              <Paragraph size="s" margin="8 0 16">
+                Now you just need to claim your roles. We’ll check your wallet
+                balances so you’ll need to sign a message to confirm, just like
+                logging in to OpenSea.
+              </Paragraph>
+              <Button margin="m 0 0" onClick={() => claimRoles()}>
+                claim roles
+              </Button>
+            </>
+          )}
+
+          {claimRolesState === ClaimRolesState.CLAIMING_ROLES && (
+            <LoadingIndicator />
+          )}
+
+          {claimRolesState === ClaimRolesState.ERROR && (
+            <Paragraph size="s">
+              Whoops, something went wrong… reload the page and try again
+            </Paragraph>
+          )}
+
+          {claimRolesState === ClaimRolesState.CLAIMED_ROLES && (
+            <>
+              {roles.length > 0 ? (
+                <>
+                  <H2 size="m">Nice, your roles are synced</H2>
+                  <Paragraph size="s" margin="8 0 16">
+                    Drop by the <a href="/s/discord">Discord</a> to give them a
+                    spin. Don’t forget to say hi!
+                  </Paragraph>
+                  <Roles>
+                    {roles.map((role) => (
+                      <Role size="s" $roleColor={roleMap[role].color}>
+                        {roleMap[role].label}
+                      </Role>
+                    ))}
+                  </Roles>
+                </>
+              ) : (
+                <>
+                  <H2 size="m">No roles to claim</H2>
+                  <Paragraph size="s" margin="8 0 0">
+                    This is likely because the wallet you connected with has no
+                    cozy co NFTs in it.
+                  </Paragraph>
+                </>
+              )}
+            </>
+          )}
+        </ActionCard>
       </MaxWidthWrapper>
     </PageContent>
   );

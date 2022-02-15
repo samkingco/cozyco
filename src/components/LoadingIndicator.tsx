@@ -11,8 +11,8 @@ const rotate = keyframes`
 `;
 
 export const LoadingIndicator = styled.span<{ margin?: string }>`
-  width: ${(p) => p.theme.spacing.s};
-  height: ${(p) => p.theme.spacing.s};
+  width: 16px;
+  height: 16px;
   display: inline-block;
   position: relative;
   &::after {
@@ -24,7 +24,7 @@ export const LoadingIndicator = styled.span<{ margin?: string }>`
     height: 100%;
     box-sizing: border-box;
     border-radius: 100%;
-    border-top: 2px solid ${(p) => p.theme.colors.fg};
+    border-top: 2px solid ${(p) => p.theme.colors.fgBase};
     border-left: 2px solid transparent;
     border-bottom: 2px solid transparent;
     border-right: 2px solid transparent;

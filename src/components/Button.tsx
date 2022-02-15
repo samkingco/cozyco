@@ -5,57 +5,48 @@ interface ButtonProps {
   margin?: string;
 }
 
-const baseButtonStyles = css`
-  display: inline-block;
+export const buttonStyles = css<ButtonProps>`
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
   margin: 0;
-  text-decoration: none;
-  font-family: ${(p) => p.theme.fonts.body};
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: ${(p) => p.theme.colors.bgBase};
+  color: ${(p) => p.theme.colors.fgStrong};
+  font-family: ${(p) => p.theme.fonts.heading};
+  font-size: ${(p) => p.theme.fontSizes.s};
+  line-height: 1.25;
   font-weight: normal;
   cursor: pointer;
+  text-decoration: none;
+  text-transform: lowercase;
   text-align: center;
-  background: white;
-  color: ${(p) => p.theme.colors.fg};
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
   overflow: hidden;
   cursor: pointer;
-`;
-
-const buttonStyles = css<ButtonProps>`
-  padding: ${(p) => p.theme.spacing.s} ${(p) => p.theme.spacing.m};
-  font-size: ${(p) => p.theme.fontSizes.s};
-  border: 0.25rem solid ${(p) => p.theme.colors.fg};
-  box-shadow: 0.25rem 0.25rem 0 0 ${(p) => p.theme.colors.fg};
-  transition: border 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-  border-radius: 0.5rem;
-  background-color: white;
+  transition: background-color 150ms ease;
 
   &:hover:not(:disabled),
   &:focus-visible {
-    transform: translate3d(-0.125rem, -0.125rem, 0);
-    box-shadow: 0.375rem 0.375rem 0 0 ${(p) => p.theme.colors.fg};
-  }
-
-  &:active {
-    transform: translate3d(0.25rem, 0.25rem, 0);
-    box-shadow: 0.25rem 0.25rem 0 0 ${(p) => p.theme.colors.fg};
+    background: ${(p) => p.theme.colors.bgStrong};
   }
 
   &:disabled {
-    background: #b4b4b4;
+    background: ${(p) => p.theme.colors.bgDisabled};
+    color: ${(p) => p.theme.colors.fgDisabled};
     cursor: default;
   }
 `;
 
 export const Button = styled.button<ButtonProps>`
-  ${baseButtonStyles};
   ${buttonStyles};
   ${withMargin};
 `;
 
 export const LinkButton = styled.a<ButtonProps>`
-  ${baseButtonStyles};
   ${buttonStyles};
   position: relative;
   text-decoration: none;
