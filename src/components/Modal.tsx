@@ -11,7 +11,7 @@ const DialogOverlay = styled(ReachDialogOverlay)`
     z-index: 1000;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-    background: ${(p) => p.theme.colors.bg};
+    background: rgba(0, 0, 0, 0.16);
   }
 `;
 
@@ -21,7 +21,7 @@ const DialogContent = styled(ReachDialogContent)`
     height: 100%;
     margin: 0;
     padding: 0;
-    background: ${(p) => p.theme.colors.bg};
+    background: ${(p) => p.theme.colors.bgMuted};
   }
 `;
 
