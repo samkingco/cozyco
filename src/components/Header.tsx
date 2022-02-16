@@ -20,6 +20,22 @@ const Wrapper = styled.div<{ $hasIllustration: boolean }>`
         padding-bottom: 128px;
       }
     `}
+
+  @supports (mix-blend-mode: overlay) {
+    &:before {
+      content: "";
+      display: block;
+      background: url("/noise.png") repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 11;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+  }
 `;
 
 const Content = styled.div`
