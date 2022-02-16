@@ -4,7 +4,8 @@ export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: Arnold;
     font-display: fallback;
-    src: url(/fonts/Arnold-Italic.woff2) format("woff2");
+    src:  url(/fonts/Arnold-Italic.woff2) format("woff2"),
+          url(/fonts/Arnold-Italic.woff) format("woff");
     font-style: italic;
     font-weight: normal;
   }

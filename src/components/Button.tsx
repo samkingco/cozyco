@@ -15,6 +15,7 @@ export const buttonStyles = css<ButtonProps>`
   background: ${(p) => p.theme.colors.bgBase};
   color: ${(p) => p.theme.colors.fgStrong};
   font-family: ${(p) => p.theme.fonts.heading};
+  font-style: italic;
   font-size: ${(p) => p.theme.fontSizes.s};
   line-height: 1.25;
   font-weight: normal;

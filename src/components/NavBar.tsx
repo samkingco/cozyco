@@ -55,6 +55,7 @@ const NavLinks = styled.nav`
 const NavLink = styled.a`
   display: block;
   font-family: ${(p) => p.theme.fonts.heading};
+  font-style: italic;
   font-size: ${(p) => p.theme.fontSizes.s};
   font-weight: normal;
   line-height: 1.25;
