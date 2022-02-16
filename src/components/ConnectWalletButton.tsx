@@ -18,7 +18,7 @@ const ConnectButton = styled(Button)`
   }
 `;
 
-const DropdownList = styled(Popover.Content)`
+const DropdownList = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   background: ${(p) => p.theme.colors.bgMuted};
@@ -128,28 +128,30 @@ export function ConnectWalletButton({ additionalOptions = [] }: Props) {
         {ensAccount ? ensAccount.displayName : "connecting…"}
         <ChevronDownIcon />
       </DropdownTrigger>
-      <DropdownList align="end">
-        <DropdownItem
-          onClick={() => {
-            disconnect();
-            setIsOpen(false);
-          }}
-        >
-          <DisconnectIcon />
-          Disconnect wallet
-        </DropdownItem>
-        {additionalOptions.map(({ id, label, onClick }) => (
+      <Popover.Content align="end">
+        <DropdownList>
           <DropdownItem
-            key={id}
             onClick={() => {
-              onClick();
+              disconnect();
               setIsOpen(false);
             }}
           >
-            {label}
+            <DisconnectIcon />
+            Disconnect wallet
           </DropdownItem>
-        ))}
-      </DropdownList>
+          {additionalOptions.map(({ id, label, onClick }) => (
+            <DropdownItem
+              key={id}
+              onClick={() => {
+                onClick();
+                setIsOpen(false);
+              }}
+            >
+              {label}
+            </DropdownItem>
+          ))}
+        </DropdownList>
+      </Popover.Content>
     </Popover.Root>
   ) : (
     <ConnectButton onClick={() => connect(connectOptions)}>
