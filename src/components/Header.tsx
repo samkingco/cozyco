@@ -30,7 +30,7 @@ const Content = styled.div`
   padding: 4vw 0 20vw;
 
   @media screen and (min-width: ${(p) => p.theme.breakpoints.s}) {
-    padding: 4vw 12vw 16vw;
+    padding: 12vw 12vw 16vw;
   }
   @media screen and (min-width: ${(p) => p.theme.breakpoints.m}) {
     padding: 4vw 12vw;

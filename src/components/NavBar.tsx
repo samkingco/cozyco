@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { ConnectWalletButton } from "./ConnectWalletButton";
+import { DiscordIcon } from "./icons/DiscordIcon";
 import { Quilty } from "./Quilty";
 
 const Header = styled.header`
@@ -102,8 +103,13 @@ export function NavBar() {
         additionalOptions={[
           {
             id: "discord-roles",
-            label: "Claim discord roles",
-            onSelect: () => router.push("/discord-roles"),
+            label: (
+              <>
+                <DiscordIcon />
+                Claim discord roles
+              </>
+            ),
+            onClick: () => router.push("/discord-roles"),
           },
         ]}
       />

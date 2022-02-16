@@ -1,6 +1,7 @@
+import Link from "next/link";
 import styled from "styled-components";
-import { DiscordLinkIcon } from "./icons/DiscordLinkIcon";
-import { TwitterLinkIcon } from "./icons/TwitterLinkIcon";
+import { DiscordIcon } from "./icons/DiscordIcon";
+import { TwitterIcon } from "./icons/TwitterIcon";
 import { Paragraph } from "./Typography";
 
 const FooterWrapper = styled.footer`
@@ -35,8 +36,16 @@ export function Footer() {
   return (
     <FooterWrapper>
       <FooterText>&copy;{currentYear} cozy co. All Rights Reserved.</FooterText>
-      <DiscordLinkIcon />
-      <TwitterLinkIcon />
+      <Link href="/s/discord" passHref>
+        <a>
+          <DiscordIcon size={24} />
+        </a>
+      </Link>
+      <Link href="/s/twitter" passHref>
+        <a>
+          <TwitterIcon size={24} />
+        </a>
+      </Link>
     </FooterWrapper>
   );
 }

@@ -1,13 +1,14 @@
 import { connectOptions } from "@cozy/utils/connectOptions";
 import { fetcher } from "@cozy/utils/fetch";
 import { useWallet } from "@gimmixorg/use-wallet";
-import { Menu, MenuButton, MenuItem, MenuList } from "@reach/menu-button";
-import "@reach/menu-button/styles.css";
+import * as Popover from "@radix-ui/react-popover";
+import { useState } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
 import { Button, buttonStyles } from "./Button";
 import { ChevronDownIcon } from "./icons/ChevronDownIcon";
 import { CoffeeIcon } from "./icons/CoffeeIcon";
+import { DisconnectIcon } from "./icons/DisconnectIcon";
 import withMargin from "./withMargin";
 
 const ConnectButton = styled(Button)`
@@ -17,38 +18,45 @@ const ConnectButton = styled(Button)`
   }
 `;
 
-const DropdownList = styled(MenuList)`
-  &[data-reach-menu-list],
-  &[data-reach-menu-items] {
-    min-width: 100%;
-    display: block;
-    white-space: nowrap;
-    border: none;
-    background: ${(p) => p.theme.colors.bgMuted};
-    padding: 12px;
-    margin-top: 4px;
-    font-size: inherit;
-    position: relative;
-    z-index: 100;
-    border-radius: 12px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
-  }
+const DropdownList = styled(Popover.Content)`
+  display: grid;
+  grid-template-columns: 1fr;
+  background: ${(p) => p.theme.colors.bgMuted};
+  padding: 12px;
+  margin-top: 4px;
+  z-index: 100;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
 `;
 
-const DropdownItem = styled(MenuItem)`
+const DropdownItem = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: ${(p) => p.theme.colors.bgMuted};
+  color: ${(p) => p.theme.colors.fgStrong};
+  font-family: ${(p) => p.theme.fonts.body};
   font-size: ${(p) => p.theme.fontSizes.s};
+  line-height: 1.25;
+  font-weight: normal;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 150ms ease;
   border-radius: 4px;
+  padding: 8px 12px;
 
-  &[data-reach-menu-item] {
-    padding: 8px 12px;
-  }
-  &[data-reach-menu-item][data-selected] {
+  &:hover {
     background: ${(p) => p.theme.colors.bgBase};
-    color: inherit;
   }
 `;
 
-const DropdownTrigger = styled(MenuButton)`
+const DropdownTrigger = styled(Popover.Trigger)`
   position: relative;
   gap: 8px;
   ${buttonStyles};
@@ -88,8 +96,8 @@ interface ENSLookupResponse {
 
 interface AdditionalOption {
   id: string;
-  label: string;
-  onSelect: () => void;
+  label: React.ReactNode;
+  onClick: () => void;
 }
 
 interface Props {
@@ -97,6 +105,7 @@ interface Props {
 }
 
 export function ConnectWalletButton({ additionalOptions = [] }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
   const { account, connect, disconnect } = useWallet();
   const { data: ensAccount } = useSWR<ENSLookupResponse>(
     account ? `https://api.ensideas.com/ens/resolve/${account}` : null,
@@ -113,21 +122,35 @@ export function ConnectWalletButton({ additionalOptions = [] }: Props) {
     );
 
   return account ? (
-    <Menu>
+    <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
       <DropdownTrigger>
         <AvatarWrapper>{avatar}</AvatarWrapper>
         {ensAccount ? ensAccount.displayName : "connecting…"}
         <ChevronDownIcon />
       </DropdownTrigger>
-      <DropdownList>
-        <DropdownItem onSelect={disconnect}>Disconnect wallet</DropdownItem>
-        {additionalOptions.map(({ id, label, onSelect }) => (
-          <DropdownItem key={id} onSelect={onSelect}>
+      <DropdownList align="end">
+        <DropdownItem
+          onClick={() => {
+            disconnect();
+            setIsOpen(false);
+          }}
+        >
+          <DisconnectIcon />
+          Disconnect wallet
+        </DropdownItem>
+        {additionalOptions.map(({ id, label, onClick }) => (
+          <DropdownItem
+            key={id}
+            onClick={() => {
+              onClick();
+              setIsOpen(false);
+            }}
+          >
             {label}
           </DropdownItem>
         ))}
       </DropdownList>
-    </Menu>
+    </Popover.Root>
   ) : (
     <ConnectButton onClick={() => connect(connectOptions)}>
       Connect wallet
