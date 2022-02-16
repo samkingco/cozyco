@@ -73,29 +73,23 @@ const LogoLockup = styled.div`
 const IllustrationLeft = styled.div`
   position: absolute;
   bottom: 0;
-  left: -4vw;
+  left: 0;
   width: 100%;
   height: 110%;
   background: url("/header-left.svg") no-repeat bottom left;
   background-size: contain;
   z-index: 2;
-  @media screen and (min-width: ${(p) => p.theme.breakpoints.m}) {
-    left: 0;
-  }
 `;
 
 const IllustrationRight = styled.div`
   position: absolute;
   bottom: 0;
-  right: -4vw;
+  right: 0;
   width: 100%;
   height: 110%;
   background: url("/header-right.svg") no-repeat bottom right;
   background-size: contain;
   z-index: 1;
-  @media screen and (min-width: ${(p) => p.theme.breakpoints.m}) {
-    right: 0;
-  }
 `;
 
 interface Props {
