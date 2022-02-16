@@ -7,6 +7,7 @@ import { H2, Paragraph } from "@cozy/components/Typography";
 import { connectOptions } from "@cozy/utils/connectOptions";
 import { useWallet } from "@gimmixorg/use-wallet";
 import { signIn, useSession } from "next-auth/react";
+import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -139,8 +140,20 @@ export default function DiscordRoles() {
     setClaimRolesState(ClaimRolesState.CLAIMED_ROLES);
   };
 
+  const metaTitle = "discord roles • cozy co.";
+  const metaDescription =
+    "connect your wallet and get some cozy roles in our discord";
+
   return (
     <PageContent>
+      <Head>
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+      </Head>
       <MaxWidthWrapper as="section">
         <PageTitle title="Claim discord roles" quilty="bot" />
         <Paragraph>

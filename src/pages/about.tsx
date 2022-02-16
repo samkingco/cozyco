@@ -2,11 +2,25 @@ import { MaxWidthWrapper } from "@cozy/components/MaxWidthWrapper";
 import { PageContent } from "@cozy/components/PageContent";
 import { PageTitle } from "@cozy/components/PageTitle";
 import { H2, H4, Paragraph } from "@cozy/components/Typography";
+import Head from "next/head";
 import React from "react";
 
 export default function About() {
+  const metaTitle = "our story • cozy co.";
+  const metaDescription =
+    "a little bit about how we came to be, and how we’re staying cozy";
+
   return (
     <PageContent>
+      <Head>
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+      </Head>
+
       <MaxWidthWrapper as="section">
         <PageTitle title="Our story" quilty="hearts" />
         <Paragraph size="s">October 2021</Paragraph>

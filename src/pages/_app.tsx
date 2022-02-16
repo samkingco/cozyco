@@ -12,7 +12,7 @@ import { ThemeProvider } from "styled-components";
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
   const metaTitle = "cozy co.";
-  const metaDescription = "a digital studio for all things cozy";
+  const metaDescription = "a studio for all things cozy";
   const metaImage = "https://cozyco.studio/og-image.png";
 
   return (

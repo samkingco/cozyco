@@ -160,9 +160,9 @@ export default function Membership() {
     }
   }, [mintingState, merkleProof]);
 
-  const metaTitle = "join cozy co.";
+  const metaTitle = "membership • cozy co.";
   const metaDescription =
-    "a very limited number of special membership cards are available, join the club!";
+    "a very limited number of special membership cards are available… become a friend of cozy co.";
   const metaImage = "https://cozyco.studio/og-image-join-active.png";
 
   return (
