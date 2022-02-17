@@ -116,6 +116,27 @@ const handler = async (
         type: 4,
         data: await getRandomVibe(),
       });
+    case "roles":
+      return res.status(200).json({
+        type: 4,
+        data: {
+          content:
+            "Want those cozy roles? Connect your wallet below and roles will be synced based on the cozy co NFTs you own!",
+          components: [
+            {
+              type: 1,
+              components: [
+                {
+                  type: 2,
+                  label: "Connect wallet to Discord",
+                  style: 5,
+                  url: "https://cozyco.studio/discord-roles",
+                },
+              ],
+            },
+          ],
+        },
+      });
     default:
       return res.status(200).json({
         type: 4,

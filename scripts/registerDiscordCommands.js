@@ -73,6 +73,11 @@ const deleteGlobalCommand = (commandId) =>
   //   ],
   // });
 
+  // await createGlobalCommand({
+  //   name: "roles",
+  //   description: "Get the link to connect your wallet and claim your roles",
+  // });
+
   const commands = await getGlobalCommands();
   console.log(commands);
 })().catch((err) => {
