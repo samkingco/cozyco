@@ -22,6 +22,11 @@ export default [
   },
   {
     "inputs": [],
+    "name": "BalanceQueryForZeroAddress",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "IncorrectPrice",
     "type": "error"
   },
@@ -37,17 +42,12 @@ export default [
   },
   {
     "inputs": [],
-    "name": "NonExistant",
+    "name": "NonExistent",
     "type": "error"
   },
   {
     "inputs": [],
     "name": "NotAuthorized",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotMinted",
     "type": "error"
   },
   {
@@ -210,6 +210,25 @@ export default [
         "type": "uint256"
       }
     ],
+    "name": "_ownerOf",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "name": "_tokenApprovals",
     "outputs": [
       {
@@ -311,7 +330,7 @@ export default [
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "tokenId",
+        "name": "id",
         "type": "uint256"
       }
     ],
@@ -323,7 +342,7 @@ export default [
         "type": "address"
       }
     ],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -414,7 +433,7 @@ export default [
         "type": "bool"
       }
     ],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -542,6 +561,19 @@ export default [
   },
   {
     "inputs": [],
+    "name": "openSeaGasFreeListingEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "owner",
     "outputs": [
       {
@@ -557,7 +589,7 @@ export default [
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "id",
         "type": "uint256"
       }
     ],

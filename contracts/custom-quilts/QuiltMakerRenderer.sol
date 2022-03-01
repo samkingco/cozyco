@@ -92,9 +92,9 @@ contract QuiltMakerRenderer is Ownable, IQuiltMakerRenderer {
         renderedSupply = string(
             abi.encodePacked(
                 '<g transform="translate(',
-                Strings.uintToString(itemType == 1 ? x * BASE_PATCH_SIZE : x),
+                Strings.toString(itemType == 1 ? x * BASE_PATCH_SIZE : x),
                 ", ",
-                Strings.uintToString(itemType == 1 ? y * BASE_PATCH_SIZE : y),
+                Strings.toString(itemType == 1 ? y * BASE_PATCH_SIZE : y),
                 ')">',
                 part,
                 "</g>"
@@ -130,13 +130,13 @@ contract QuiltMakerRenderer is Ownable, IQuiltMakerRenderer {
             string memory d = string(
                 abi.encodePacked(
                     "M",
-                    Strings.uintToString(x),
+                    Strings.toString(x),
                     ",",
-                    Strings.uintToString(y + h),
+                    Strings.toString(y + h),
                     " h",
-                    Strings.uintToString(w),
+                    Strings.toString(w),
                     " v-",
-                    Strings.uintToString(h)
+                    Strings.toString(h)
                 )
             );
 
@@ -145,11 +145,11 @@ contract QuiltMakerRenderer is Ownable, IQuiltMakerRenderer {
                 d = string(
                     abi.encodePacked(
                         "M",
-                        Strings.uintToString(x),
+                        Strings.toString(x),
                         ",",
-                        Strings.uintToString(y + h),
+                        Strings.toString(y + h),
                         " h",
-                        Strings.uintToString(w)
+                        Strings.toString(w)
                     )
                 );
             }
@@ -159,11 +159,11 @@ contract QuiltMakerRenderer is Ownable, IQuiltMakerRenderer {
                 d = string(
                     abi.encodePacked(
                         "M",
-                        Strings.uintToString(x + w),
+                        Strings.toString(x + w),
                         ",",
-                        Strings.uintToString(y),
+                        Strings.toString(y),
                         " v",
-                        Strings.uintToString(h)
+                        Strings.toString(h)
                     )
                 );
             }
@@ -194,9 +194,9 @@ contract QuiltMakerRenderer is Ownable, IQuiltMakerRenderer {
         svg.appendSafe(
             abi.encodePacked(
                 '<svg width="100%" height="100%" viewBox="0 0 ',
-                Strings.uintToString(CANVAS_SIZE),
+                Strings.toString(CANVAS_SIZE),
                 " ",
-                Strings.uintToString(CANVAS_SIZE),
+                Strings.toString(CANVAS_SIZE),
                 '" xmlns="http://www.w3.org/2000/svg" fill="none" shape-rendering="crispEdges">'
             )
         );
@@ -209,17 +209,17 @@ contract QuiltMakerRenderer is Ownable, IQuiltMakerRenderer {
         svg.appendSafe(
             abi.encodePacked(
                 '<g filter="url(#gl)" transform="translate(',
-                Strings.uintToString(CANVAS_SIZE / 2 - (BASE_PATCH_SIZE * quiltW) / 2),
+                Strings.toString(CANVAS_SIZE / 2 - (BASE_PATCH_SIZE * quiltW) / 2),
                 ", ",
-                Strings.uintToString(CANVAS_SIZE / 2 - (BASE_PATCH_SIZE * quiltH) / 2),
+                Strings.toString(CANVAS_SIZE / 2 - (BASE_PATCH_SIZE * quiltH) / 2),
                 ')"><rect x="12" y="12" rx="16" width="',
-                Strings.uintToString(BASE_PATCH_SIZE * quiltW),
+                Strings.toString(BASE_PATCH_SIZE * quiltW),
                 '" height="',
-                Strings.uintToString(BASE_PATCH_SIZE * quiltH),
+                Strings.toString(BASE_PATCH_SIZE * quiltH),
                 '" fill="#2A2F4F" /><rect width="',
-                Strings.uintToString(BASE_PATCH_SIZE * quiltW),
+                Strings.toString(BASE_PATCH_SIZE * quiltW),
                 '" height="',
-                Strings.uintToString(BASE_PATCH_SIZE * quiltH),
+                Strings.toString(BASE_PATCH_SIZE * quiltH),
                 '" rx="8" stroke="#2A2F4F" stroke-width="8" fill="#fff" /><g id="patches" clip-path="url(#quilt-shape)">'
             )
         );
@@ -241,11 +241,11 @@ contract QuiltMakerRenderer is Ownable, IQuiltMakerRenderer {
         svg.appendSafe(
             abi.encodePacked(
                 '<defs><clipPath id="quilt-shape"><rect width="',
-                Strings.uintToString(BASE_PATCH_SIZE * quiltW),
+                Strings.toString(BASE_PATCH_SIZE * quiltW),
                 '" height="',
-                Strings.uintToString(BASE_PATCH_SIZE * quiltH),
+                Strings.toString(BASE_PATCH_SIZE * quiltH),
                 '" rx="8" /></clipPath><filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feTurbulence baseFrequency="0.003" seed="',
-                Strings.uintToString(tokenId * 4000),
+                Strings.toString(tokenId * 4000),
                 '"/><feDisplacementMap in="SourceGraphic" scale="20"/></filter></defs>'
             )
         );
@@ -271,7 +271,7 @@ contract QuiltMakerRenderer is Ownable, IQuiltMakerRenderer {
                 string(
                     abi.encodePacked(
                         '{"name":"custom quilt #',
-                        Strings.uintToString(tokenId),
+                        Strings.toString(tokenId),
                         '","description":"a cozy quilt","image": "',
                         _draw(tokenId, quilt),
                         '","attributes":[]}'

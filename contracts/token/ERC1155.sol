@@ -51,7 +51,7 @@ interface IERC1155 {
 }
 
 /// @notice Fork of Rari-Capital Solmate that uses an function for `isApprovedForAll`
-///         https://github.com/Rari-Capital/solmate/blob/main/src/tokens/ERC1155.sol
+///         https://github.com/Rari-Capital/solmate/blob/main/src/token/ERC1155.sol
 /// @author samking.eth
 abstract contract ERC1155 is IERC1155 {
     /**************************************************************************

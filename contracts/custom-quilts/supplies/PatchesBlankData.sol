@@ -61,7 +61,7 @@ contract PatchesBlankData is Ownable, ISupplyMetadata {
         uint256 x = (200 - w) / 2;
         uint256 y = (200 - h) / 2;
         bytes6 bg = imageBackgrounds[
-            Random.seeded(Strings.uintToString(sku)) % imageBackgrounds.length
+            Random.seeded(Strings.toString(sku)) % imageBackgrounds.length
         ];
 
         // Allocate 524KB of memory, we will not use this much, but it's safe.
@@ -73,15 +73,15 @@ contract PatchesBlankData is Ownable, ISupplyMetadata {
                 '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" fill="none"><rect width="100%" height="100%" fill="#',
                 bg,
                 '"/><g transform="translate(',
-                Strings.uintToString(x),
+                Strings.toString(x),
                 ",",
-                Strings.uintToString(y),
+                Strings.toString(y),
                 ')">',
                 getSupplySVGPart(decodedSKU.metadataPartNumber),
                 '<rect width="',
-                Strings.uintToString(w),
+                Strings.toString(w),
                 '" height="',
-                Strings.uintToString(h),
+                Strings.toString(h),
                 '" x="0" y="0" fill="none" stroke="black" stroke-width="4" stroke-dasharray="4 4" stroke-dashoffset="2" /></g></svg>'
             )
         );
@@ -130,7 +130,7 @@ contract PatchesBlankData is Ownable, ISupplyMetadata {
         bytes[] memory parts = new bytes[](36);
         for (uint256 i = 0; i < 36; i++) {
             bytes6 color = patchColours[
-                Random.seeded(Strings.uintToString(i * 400)) % patchColours.length
+                Random.seeded(Strings.toString(i * 400)) % patchColours.length
             ];
             if (i < 16) {
                 parts[i] = bytes(

@@ -49,7 +49,7 @@ contract OGQuiltGenerator {
     }
 
     function getQuiltData(uint256 tokenId) external pure returns (Quilt memory quilt) {
-        string memory seed = Strings.uintToString(tokenId * 4444);
+        string memory seed = Strings.toString(tokenId * 4444);
         RandValues memory rand;
 
         // Determine how big the quilt is

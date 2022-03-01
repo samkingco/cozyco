@@ -2,8 +2,8 @@
 pragma solidity ^0.8.10;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "../tokens/ERC721.sol";
-import {IERC1155, ERC1155TokenReceiver} from "../tokens/ERC1155.sol";
+import "../token/ERC721.sol";
+import {IERC1155, ERC1155TokenReceiver} from "../token/ERC1155.sol";
 import {IQuiltMakerRenderer} from "./QuiltMakerRenderer.sol";
 import "./ISupplyStore.sol";
 import "./SupplySKU.sol";
@@ -60,7 +60,7 @@ contract QuiltMaker is Ownable, ERC721, ERC1155TokenReceiver, IQuiltMaker {
         uint256[] memory supplySkus,
         uint256[] memory supplyCoords
     ) public {
-        if (ownerOf[tokenId] != _msgSender()) revert NotOwner();
+        if (ownerOf(tokenId) != _msgSender()) revert NotOwner();
         if (!renderer.validateQuiltLayout(quilts[tokenId].size, supplySkus, supplyCoords))
             revert InvalidLayout();
 
@@ -93,7 +93,7 @@ contract QuiltMaker is Ownable, ERC721, ERC1155TokenReceiver, IQuiltMaker {
     }
 
     function unStitchQuilt(uint256 tokenId) public {
-        if (ownerOf[tokenId] != _msgSender()) revert NotOwner();
+        if (ownerOf(tokenId) != _msgSender()) revert NotOwner();
 
         Quilt storage quilt = quilts[tokenId];
 
@@ -134,7 +134,7 @@ contract QuiltMaker is Ownable, ERC721, ERC1155TokenReceiver, IQuiltMaker {
     }
 
     function burn(uint256 tokenId) public {
-        if (ownerOf[tokenId] != _msgSender()) revert NotOwner();
+        if (ownerOf(tokenId) != _msgSender()) revert NotOwner();
         _burn(tokenId);
     }
 

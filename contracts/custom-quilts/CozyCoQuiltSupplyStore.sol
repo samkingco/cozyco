@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.10;
 
-import {ERC1155, IERC1155} from "../tokens/ERC1155.sol";
+import {ERC1155, IERC1155} from "../token/ERC1155.sol";
 import "@rari-capital/solmate/src/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "../utils/Base64.sol";
@@ -200,9 +200,9 @@ contract CozyCoQuiltSupplyStore is Ownable, ERC1155, ReentrancyGuard, ICozyCoQui
         // Mint each token in the bundle
         for (uint256 i = 0; i < bundle.size; ) {
             // Pick a random number to compare against
-            // uint256 rng = Random.prng("B", Strings.uintToString(i), _msgSender()) %
+            // uint256 rng = Random.prng("B", Strings.toString(i), _msgSender()) %
             //     bundle.rngWeights[bundle.rngWeights.length - 1];
-            uint256 rng = Random.keyPrefix("B", Strings.uintToString(i)) %
+            uint256 rng = Random.keyPrefix("B", Strings.toString(i)) %
                 bundle.rngWeights[bundle.rngWeights.length - 1];
 
             // Determine a random tokenId from the bundle tokenIds
@@ -237,7 +237,7 @@ contract CozyCoQuiltSupplyStore is Ownable, ERC1155, ReentrancyGuard, ICozyCoQui
         uint256[] memory unbundledAmounts = new uint256[](bundle.size);
         for (uint256 i = 0; i < bundle.size; ) {
             // Pick a random number to compare against
-            uint256 rng = Random.prng("B", Strings.uintToString(i), _msgSender()) %
+            uint256 rng = Random.prng("B", Strings.toString(i), _msgSender()) %
                 bundle.rngWeights[bundle.rngWeights.length - 1];
 
             // Determine a random tokenId from the bundle tokenIds
