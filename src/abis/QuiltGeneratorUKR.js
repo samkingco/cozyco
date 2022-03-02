@@ -12,9 +12,9 @@ export default [
       {
         "components": [
           {
-            "internalType": "uint256[5][5]",
+            "internalType": "uint256[25]",
             "name": "patches",
-            "type": "uint256[5][5]"
+            "type": "uint256[25]"
           },
           {
             "internalType": "uint256",
@@ -24,6 +24,11 @@ export default [
           {
             "internalType": "uint256",
             "name": "quiltH",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalPatchCount",
             "type": "uint256"
           },
           {
@@ -59,11 +64,6 @@ export default [
           {
             "internalType": "uint256",
             "name": "backgroundIndex",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "backgroundThemeIndex",
             "type": "uint256"
           },
           {
@@ -95,9 +95,9 @@ export default [
       {
         "components": [
           {
-            "internalType": "uint256[5][5]",
+            "internalType": "uint256[25]",
             "name": "patches",
-            "type": "uint256[5][5]"
+            "type": "uint256[25]"
           },
           {
             "internalType": "uint256",
@@ -107,6 +107,11 @@ export default [
           {
             "internalType": "uint256",
             "name": "quiltH",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalPatchCount",
             "type": "uint256"
           },
           {
@@ -142,11 +147,6 @@ export default [
           {
             "internalType": "uint256",
             "name": "backgroundIndex",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "backgroundThemeIndex",
             "type": "uint256"
           },
           {

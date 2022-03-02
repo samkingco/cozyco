@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 /// @title: Quilts for Ukraine
-/// @author: Sam King (samking.eth)
+/// @author: Sam King (cozyco.eth)
 
 /*
 ++++++ -  - - - - - - - - - - - - - - +++ - - - - - - - - - - - - - - - - ++++++
